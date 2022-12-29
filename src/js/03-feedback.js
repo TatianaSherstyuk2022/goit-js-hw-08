@@ -1,9 +1,9 @@
 import throttle  from 'lodash.throttle';
 
-const contactFormEl = document.querySelector('.js-feedback-form');
-const userFeedback = {};
+const feedbackFormEl = document.querySelector('.js-feedback-form');
+const userFeedbackForm = {};
 
-const fillContactFormFields = () => {
+const fillFeedbackElFormFields = () => {
   const userInfoFromLS = JSON.parse(
     localStorage.getItem('feedback-form-state')
   );
@@ -13,29 +13,29 @@ const fillContactFormFields = () => {
   }
 
   for (const prop in userInfoFromLS) {
-    contactFormEl.elements[prop].value = userInfoFromLS[prop];
+    feedbackFormEl.elements[prop].value = userInfoFromLS[prop];
   }
 };
 
-fillContactFormFields();
+fillFeedbackElFormFields();
 
-const onContactFormFieldChange = event => {
+const onFeedbackFormFieldChange = event => {
   const { target } = event;
 
   const fieldValue = target.value;
   const fieldName = target.name;
 
-  userFeedback[fieldName] = fieldValue;
+  userFeedbackForm[fieldName] = fieldValue;
 
-  localStorage.setItem('feedback-form-state', JSON.stringify(userFeedback));
+  localStorage.setItem('feedback-form-state', JSON.stringify(userFeedbackForm));
 };
 
-const onContactFormSubmit = event => {
+const onFeedbackFormSubmit = event => {
   event.preventDefault();
 
-  contactFormEl.reset();
+  feedbackFormEl.reset();
   localStorage.removeItem('feedback-form-state');
 };
 
-contactFormEl.addEventListener('input', throttle(onContactFormFieldChange, 500));
-contactFormEl.addEventListener('submit', onContactFormSubmit);
+feedbackFormEl.addEventListener('input', throttle(onFeedbackFormFieldChange, 500));
+feedbackFormEl.addEventListener('submit', onFeedbackFormSubmit);
