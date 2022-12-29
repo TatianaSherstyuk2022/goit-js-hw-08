@@ -1,15 +1,14 @@
 // Add imports above this linen
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 
-import "simplelightbox/dist/simple-lightbox.min.css";
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { galleryItems } from './gallery-items';
 // Change code below this line
 
 console.log(galleryItems);
 
-const container = document.querySelector(".js-gallery");
-// const galleryItemEl = document.querySelector('.gallery__link')
+const container = document.querySelector('.js-gallery');
 
 function createMarkup(arr) {
   const markup = arr
@@ -20,15 +19,14 @@ function createMarkup(arr) {
         </a>
         `;
     })
-    .join("");
+    .join('');
   return markup;
 }
 
-container.insertAdjacentHTML("beforeend", createMarkup(galleryItems));
+container.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 
-var lightbox = new SimpleLightbox(".gallery a", {
-  captionsData: "alt",
-  captionPosition: "bottom",
-  captionDelay: "250",
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: '250',
 });
-
